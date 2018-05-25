@@ -1,27 +1,46 @@
-# Slim Framework 3 Skeleton Application
+# REST API with Slim Framework 3
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+A RESTful API boilerplate for Slim micro-framework. Features included:
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+- Protect route using jwt
+- Generate token
+- CRUD
 
-## Install the Application
+## Getting Started
+First, clone the repo:
+```bash
+$ git clone https://github.com/sutrisna/slim-framework-api.git
+```
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+#### Install dependencies
+```
+$ cd <project_folder>
+$ composer install
+```
+#### Running app
+```
+php -S localhost:8080 -t public public/index.php
+```
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+#### Setting database
+```
+In folder src
+Open file settings.php
+```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+```php
+'db' => [
+            'database_type' => 'mysql',
+            'database_name' => 'dev',
+            'server' => 'localhost',
+            'username' => 'root',
+            'password' => ''
+        ]
+```
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can run these commands 
-
-	cd [my-app-name]
-	php composer.phar start
-
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
+### API Routes
+#### Endpoint http://localhost:8080
+| HTTP Method	| Route | Parameters | Desciption  |
+| ----- | ----- | ---- |------------- |
+| GET      | /secret/generate | - | Generate token
+| GET     | /user/get | headers { Authorization : token } | Get all user
